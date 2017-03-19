@@ -202,4 +202,95 @@ var name = "Kinga";
 
 console.log(person1.sayHello()); //pioteer
 console.log(person2.sayHello()); //pablo
-console.log(sayHello()); //Kinga
+console.log(aaSayHello()); //Kinga
+
+//modyfikacja this
+
+function logNameAll(arg){
+  console.log(arg + ": "+this.name);
+}
+
+var person1 = {
+  name:"pioter",
+};
+var person2 = {
+  name:"pablo",
+};
+
+var name = "Obama";
+
+logNameAll.call(this, 'global'); //global: Obama //odnosimy sie do obiektu funkcji a nie wywołujemy funkcje
+logNameAll.call(person1, 'person1'); // person1: pioter
+logNameAll.call(person2, 'person2'); // person2: pablo
+
+//roznica jest taka, ze w apply mozna podac cala tablice parametrow, a w call tylko jeden parameter
+logNameAll.apply(this, ['global']);
+logNameAll.apply(person1, ['person1']);
+logNameAll.apply(person2, ['person2']);
+
+var logNameAll1 = logNameAll.bind(person1);  pioter, pablo, pioter
+console.log(logNameAll1('person1'));
+
+var logNameAll2 = logNameAll.bind(person2, "person2");
+console.log(logNameAll2('person2'));
+
+person2.logName = logNameAll1 ??
+
+//Obiekty - działania modyfikacje
+
+var person1 = {
+  name: 'Paweł'
+};
+
+var person2 = new Object();
+
+//dodanie [[Put]]
+person2.name = 'Beata';
+person1.age = 22;
+person2.age = 33;
+
+//modyfikacja [[Set]]
+person1.name = 'grzes';
+person2.name = 'rafal';
+
+
+//Obiekty wykrywanie własności
+
+var person={
+  number:0
+};
+
+// NIEEEEEEEEEEEEEEEEEEE ROBIC, bo dla number = 0 będzie FALSE!
+if (person.number){
+  console.log('true')
+}e;se{
+  console.log('false');
+}
+
+
+var person1 = {
+  name:'asd'
+  age:34
+}
+
+var person2 = {
+  name: 'oiue'
+  age: 334
+}
+//Lepiej sprawdzac tak:
+console.log('name' in person1); //true
+console.log('age' in person2);  //true
+console.log('height' in person2); //false
+
+//ale mozna jeszcze tak
+var person1 = {
+  name:'asd'
+  logName: function(){
+    console.log(this.name);
+  }
+};
+
+console.log('name' in person1); // true
+console.log(person1.hasOwnProperty('name')); //
+console.log('toString' in person1); //
+console.log(person1.hasOwnProperty('toString')); //
