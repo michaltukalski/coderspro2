@@ -153,3 +153,53 @@ console.log(sum(1,5)); //6
 console.log(sum(1,5,7));//13
 console.log(sum(3));//3
 console.log(sum());//0
+
+//przeciążaddEventListener
+function message(mes){
+  console.log(mes);
+}
+
+function message(){
+  console.log('Default');
+}
+
+message('Hello'); //Default
+
+
+function message(message){
+  if (arguments.length ===0){
+    message = Default
+  }
+  console.log(message);
+}
+
+console.log(message("Hello"));//Hello
+console.log(message());//Default
+
+
+//this
+
+var person = {
+  name:"piotr",
+  logName: function(){
+    console.log(person.name);
+  }
+};
+
+function aaSayHello(){
+  console.log(this.name);
+}
+
+var person1 = {
+  name:"pioter",
+  sayHello: aaSayHello
+};
+var person2 = {
+  name:"pablo",
+  sayHello: aaSayHello
+};
+var name = "Kinga";
+
+console.log(person1.sayHello()); //pioteer
+console.log(person2.sayHello()); //pablo
+console.log(sayHello()); //Kinga
