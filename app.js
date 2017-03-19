@@ -291,6 +291,18 @@ var person1 = {
 };
 
 console.log('name' in person1); // true
-console.log(person1.hasOwnProperty('name')); //
-console.log('toString' in person1); //
-console.log(person1.hasOwnProperty('toString')); //
+console.log(person1.hasOwnProperty('name')); //true
+console.log('toString' in person1); //true - bo jest u rodzica
+console.log(person1.hasOwnProperty('toString')); // false - bo to nie bada rodzica
+
+
+//obiekty - usuwanie wartosci
+
+var person1 = {
+  name:'asd'
+};
+
+delete person.name;
+
+console.log('name' in person) //false;
+console.log(person.name) //false
