@@ -153,7 +153,7 @@ Object.defineProperty(person, 'name', {
 });
 
 //Object.seal()
-//extensible i configurable ustawia na false
+//extensible i configurable ustawia na false, ale mozna zmieniac wartosc
 
 (function(){
 
@@ -177,5 +177,26 @@ person.sayHello = function (){
 console.log('sayHello' in person); //false
 
 person.name = 'absd';
-console.log(person.name); //'Konrad'
+console.log(person.name); //'absd'
+})()
+
+//Object.freeze() - po wykonaniu nie mozna dodawac ani usuwac wlasciwosci
+
+(function(){
+"use strict";
+var person = {
+  name: "Konrad"
+};
+
+console.log(Object.isExtensible(person)); //true;
+console.log(Object.isFrozen(person)); //false;
+Object.freeze(person);
+console.log(Object.isFrozen(person)); //false;
+person.sayGoodbay = function (){
+  console.log('say papa', this.name);
+}
+console.log('sayGoodbay' in person); //false
+
+person.name = "Piotr";
+console.log(person.name); // 'Konrad'
 })()
