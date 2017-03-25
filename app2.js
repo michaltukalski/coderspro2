@@ -54,3 +54,20 @@ for (var property in obj){
 console.log(Object.keys(obj));
 console.log(property.propertyIsEnumerable("__proto__")); //false
 console.log(property.propertyIsEnumerable("string")); //true
+
+//setter getter
+
+var person = {
+  _name: 'Marcin',
+    get name(){
+      console.log("Hello %s", this._name) //%s wyswietla pierwsza zmienna jaka znajdzie po przecinku - drugi %s to drugi po przecinku
+      console.log(`Hello ${this._name}`) // notacja w ES6 - backquote - ten pod tylda
+      return this._name;
+    }
+    set name(value){
+      this._name = value
+    }
+}
+console.log(person.name);
+person.name = 'Zosia';
+console.log(person.name);
