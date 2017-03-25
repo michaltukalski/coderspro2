@@ -245,3 +245,69 @@ console.log(person1.name); // "Pioter"
   var car1 = new Car("Szybki");
   car1.brrrrum();
 })();
+
+
+
+(function () {
+  "use strict";
+
+  function Person(name){
+    this.name = name;
+  }
+
+  Person.prototype.sayHello = function (name){
+    console.log("Hello ", name);
+  }
+
+  per1 = new Person('Lila');
+  per1.sayHello()
+
+
+})();
+
+(function () {
+  "use strict";
+
+  function Person(name){
+    this.name = name;
+  }
+
+  Person.prototype.arrPerson = [];
+
+  per1 = new Person('Ula');
+  per2 = new Person('Maria');
+  per1.arrPerson.push('czerwony');
+  per2.arrPerson.push('niebieski');
+
+  console.log(per1.arrPerson); // ['czerwony', 'niebieski']
+  console.log(per2.arrPerson); // ['czerwony', 'niebieski']
+
+
+})();
+
+(function () {
+  "use strict";
+
+  function Person(name){
+    this.name = name;
+  }
+//definiowanie kilku metod na raz
+  Person.prototyp = {
+    sayHello: function(){
+      //asdas
+    },
+    toString: function(){  //nadpisze domyslnego toString
+
+    }
+  }
+
+  per1 = new Person('Ula');
+  per2 = new Person('Maria');
+  per1.arrPerson.push('czerwony');
+  per2.arrPerson.push('niebieski');
+
+  console.log(per1.arrPerson); // ['czerwony', 'niebieski']
+  console.log(per2.arrPerson); // ['czerwony', 'niebieski']
+
+
+})();
