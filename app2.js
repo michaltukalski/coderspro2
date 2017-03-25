@@ -200,3 +200,48 @@ console.log('sayGoodbay' in person); //false
 person.name = "Piotr";
 console.log(person.name); // 'Konrad'
 })()
+
+
+// konstruktory i prototypy
+
+function Computer(){
+
+}
+
+var comp1 = new Computer; // ()na końcu nie jest potrzebny
+var comp2 = new Computer;
+console.log(comp1.constructor === Computer); //true
+
+function Person(name){
+  this.name = name;
+  this.sayHello = function(){
+    console.log("hghgh");
+  };
+}
+
+var person1 = new Person('Pioter');
+var person2 = new Person('Koniu');
+
+console.log(person1.name); // "Pioter"
+
+(function () {
+  "use strict";
+
+  function Car(name){
+    Object.defineProperty(this, 'name', {
+      get: function (){
+        return name;
+      }
+      set: function (value){
+        name = value;
+      }
+    })
+
+    this.brrrrum = function (){
+      console.log("Bruuuuummmmmmm");
+    }
+  }
+
+  var car1 = new Car("Szybki");
+  car1.brrrrum();
+})();
