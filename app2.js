@@ -51,6 +51,7 @@ for (var property in obj){
   console.log(obj[property]); // tutaj będzie wartośc właściwości
 }
 // _proto nie będzie wyswietlone ponieważ [[Enumerable]] jest ustawione na false - jak w wiekszosci wlasciwosci natywnych
+
 console.log(Object.keys(obj));
 console.log(property.propertyIsEnumerable("__proto__")); //false
 console.log(property.propertyIsEnumerable("string")); //true
@@ -71,3 +72,61 @@ var person = {
 console.log(person.name);
 person.name = 'Zosia';
 console.log(person.name);
+
+//atrybuty wspólne
+
+// [[Enumerable]] [[Configurable]]
+//Do zmiany tych wlasciwosci uzywa sie Object.defineProperty()
+
+var person = {
+  name: "Ula"
+}
+
+console.log(person.propertyIsEnumerable('name')); //true
+Object.defineProperty(person, 'name', {
+  enumerable: false
+})
+console.log(person.propertyIsEnumerable('name')); //false
+
+
+// CONFIGURABLE - blokuje dana wlasciwosc i nie mozna jej juz edytowac!! trzeba odpalic program od nowa
+var person = {
+  name: "Ula"
+}
+
+console.log(person.propertyIsEnumerable('name')); //true
+Object.defineProperty(person, 'name', {
+  configurable: false
+})
+
+Object.defineProperty(person, 'name', {
+  enumerable: false
+})
+console.log(person.propertyIsEnumerable('name')); //false
+
+
+// USE STRICT - mozna wsadzic w taka funkcje dla celow malych kodzikow
+
+(function(){
+
+"use strict";
+
+var person = {
+  name: "Ula"
+}
+
+console.log(person.propertyIsEnumerable('name')); //true
+Object.defineProperty(person, 'name', {
+  configurable: false
+})
+
+Object.defineProperty(person, 'name', {
+  configurable: true
+})
+
+Object.defineProperty(person, 'name', {
+  enumerable: false
+})
+console.log(person.propertyIsEnumerable('name')); //false)
+
+})() //IIEF
