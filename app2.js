@@ -129,4 +129,53 @@ Object.defineProperty(person, 'name', {
 })
 console.log(person.propertyIsEnumerable('name')); //false)
 
-})() //IIEF
+})() //IIFE
+
+//atrybuty wspólone
+//[[value]], [[writable]] - pozwala lub nie do tej wartosci cos wpisac?
+
+(function(){
+
+"use strict";
+
+var person = {
+  name: "Konrad"
+};
+
+})()
+
+var person = {};
+Object.defineProperty(person, 'name', {
+  value: "Pawel",
+  enumerable: true,
+  configurable: true,
+  writable: true
+});
+
+//Object.seal()
+//extensible i configurable ustawia na false
+
+(function(){
+
+"use strict";
+
+var person = {
+  name: "Konrad"
+};
+
+console.log(Object.isExtensible(person)); //true;
+console.log(Object.isSealed(person)); //false;
+
+Object.seal(person);
+console.log(Object.isExtensible(person)); // false;
+console.log(Object.isSealed(person)); //true
+
+person.sayHello = function (){
+  console.log(this.name);
+};
+
+console.log('sayHello' in person); //false
+
+person.name = 'absd';
+console.log(person.name); //'Konrad'
+})()
