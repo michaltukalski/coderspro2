@@ -30,3 +30,27 @@ var car = {
 
 console.info(car.hasOwnProperty("type")) //true
 console.info(car.hasOwnProperty("toString")) //false
+
+//usuwanie wlasciwosci
+var animal = {
+  gender:'female'
+}
+console.log(animal.gender); //female
+
+delete animal.gender;
+console.log(animal.gender); //undefined
+
+//
+
+var obj = {
+  string: 'abc'
+}
+
+for (var property in obj){
+  console.log(property); //tutaj pokaże nazwę właściwości
+  console.log(obj[property]); // tutaj będzie wartośc właściwości
+}
+// _proto nie będzie wyswietlone ponieważ [[Enumerable]] jest ustawione na false - jak w wiekszosci wlasciwosci natywnych
+console.log(Object.keys(obj));
+console.log(property.propertyIsEnumerable("__proto__")); //false
+console.log(property.propertyIsEnumerable("string")); //true
