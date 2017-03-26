@@ -221,3 +221,34 @@ Square.prototype.toString = function(){
 }
 
 var square = new Square(6)
+
+
+//Singleton
+var Singleton = (function(){
+  console.count();
+  var instance;
+
+  function createInstance(){
+    var obj = new Object('Zostalem stworzony');
+    return obj;
+  }
+
+  return{
+    getInstance: function(){
+      if (!instance){
+        console.log('zwracam instancje');
+        createInstance()
+      }
+      return instance
+    }
+  }
+})();
+
+function init(){
+  var instance1 = Singleton.getInstance();
+  var instance2 = Singleton.getInstance();
+
+  console.log(instance1 === instance2)
+}
+
+init();
