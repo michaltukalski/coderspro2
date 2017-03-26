@@ -300,14 +300,37 @@ console.log(person1.name); // "Pioter"
 
     }
   }
-
-  per1 = new Person('Ula');
-  per2 = new Person('Maria');
-  per1.arrPerson.push('czerwony');
-  per2.arrPerson.push('niebieski');
-
-  console.log(per1.arrPerson); // ['czerwony', 'niebieski']
-  console.log(per2.arrPerson); // ['czerwony', 'niebieski']
+})();
 
 
+(function () {
+  "use strict";
+
+  function Person(name){
+    this.name = name;
+  }
+
+  var per1 = new Person('Zosia');
+  var per2 = new Person('Tosia');
+
+  Object.freeze(person1)
+
+  Person.prototype.sayHi = function (){
+    console.log('Hi');
+  }
+
+  per1.sayHi();// "Hi"
+  per2.sayHi();// "Hi"
+
+})();
+
+(function () {
+  "use strict";
+  Array.prototype.sumUp = function (arr){
+    return this.reduce(function(previousValue, currentValue) {
+      return previousValue + currentValue;});
+    }
+
+  var arr = [1, 2, 3, 4, 5, 6, 7];
+  console.log(arr.sumUp());
 })();
