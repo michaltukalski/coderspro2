@@ -116,3 +116,75 @@ console.log(person2.hasOwnProperty('sayHello')); //false
 var emptyObject = Object.create(null);
 console.log('toString' in emptyObject);
 console.log('valueOf' in emptyObject);
+
+//Dziedziczenie konstruktorów
+
+//human
+function VeryFriendlyConstructor(){
+  //sdfsdf
+}
+
+//js
+// to jest podtyp:                  to jest supertyp:             (VeryFriendlyConstructor jest podtypem Object)
+VeryFriendlyConstructor.prototype = Object.create(Object.protoype, {
+  constructor:{
+    value: MyConstructor,
+    enumerable: true,
+    configurable: true,
+    writable: true
+  }
+});}
+//
+
+function Rectangle(length, width){
+  console.log('Został wywowłany Rectangle');
+  this.length = lenght;
+  this.width = width;
+}
+
+Rectangle.prototype.getArea = function (){
+  return this.length * this.width;
+}
+
+Rectangle.prototype.toString = function (){
+  return '[Rectangle '+this length + " "+this.width+']';
+}
+
+function Square (size){
+  this.length = size;
+  this.width = size;
+}
+
+//Square.prototype = new Rectangle();
+//Square.prototype.constructor = Square;
+//powyzej to trochę na piechote, ponizej inaczej:
+Square.prototype = Object.create(Rectangle.prototype, {
+  constructor:{
+    value: Square,
+    enumerable: true,
+    configurable: true,
+    writable: true
+    //te 3 powyzsze linijki są z definicji na true, nie trzeba ich pisac
+  }
+})
+
+Square.prototype.toString =function(){
+  return '[Square ' + this.length + ' na ' +this.width + ']';
+};
+
+var rect = new Rectangle(5, 10);
+var square = new Square(6);
+
+console.log(rect.getArea()); //50
+console.log(square.getArea()); //36
+
+console.log(rect.toString()); //'Rectangle'
+console.log(square.toString());//'Square'
+
+console.log(rect instanceof Rectangle); //true
+console.log(rect instanceof Square); //false
+console.log(rect instanceof Object); //true
+
+console.log(square instanceof Square); //true
+console.log(square instanceof Rectangle);//true
+console.log(square instanceof Object);//true
